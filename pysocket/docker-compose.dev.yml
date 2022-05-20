@@ -1,0 +1,21 @@
+# run containers with: docker compose up
+# stop containers with CTRL+C
+# delete containers (and network) with docker compose down
+# docker compose up pyclient to run only the client (or the server)
+version: '3.1'
+
+services:
+  pyserver:
+    image: pyserver:latest 
+    restart: always
+    #ports: 
+    # - 8080:8080
+    environment:
+      PORT: 8080
+
+  pyclient:
+    image: pyclient:latest 
+    #restart: always
+    environment:
+      HOST: pyserver
+      PORT: 8080
